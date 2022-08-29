@@ -27,6 +27,8 @@ togglePassword.addEventListener("click", function () {
 
 function validationForm(event){
     event.preventDefault();
+
+
     if (email.value == null || email.value == "") {
         document.getElementById("emailErr").textContent="The email field is required."
       } else if (
@@ -71,16 +73,16 @@ function validationForm(event){
       }
 
 
-     if(mailbool==true&&namebool==true&&passbool==true){
-      let formData = JSON.parse(localStorage.getItem('formData')) || [];
-      formData.push({ mailValue, nameValue, passValue});
-      localStorage.setItem('formData', JSON.stringify(formData));
-      email.value=""
-      password.value = ""
-      personName.value =""
-      document.getElementById("registeredMsg").textContent = "Registerd Successfully"
-      document.getElementById("registeredMsg").style.color = "green"
-     }
+      if(mailbool==true&&namebool==true&&passbool==true){
+   
+        window.sessionStorage.setItem("nameValue",personName.value);
+        window.open("evaluation.html","_self");
+        let formData = JSON.parse(localStorage.getItem('formData')) || [];
+        formData.push({ mailValue, nameValue, passValue});
+        localStorage.setItem('formData', JSON.stringify(formData));
+       
+       }
+  
 
 
 }
@@ -103,46 +105,10 @@ togglePassword2.addEventListener("click", function () {
   this.classList.toggle("bi-eye");
 });
 
-
-
   function validationData(event){
     event.preventDefault();
-    if (emailIN.value == null || emailIN.value == "") {
-        document.getElementById("emailErr").textContent="The email field is required."
-      } else if (
-        !emailIN.value.match(
-            /^\S+@\S+\.\S+$/
-        )
-      ) {
-        document.getElementById("emailErr").textContent =
-          "The email must be a valid email address.";
-        
-      } else {
-        
-        mailValueIN=emailIN.value;
-        document.getElementById("emailErr").textContent ="";
-        mailIN=true;
-        
-      }
-      
-  
-      if (passwordIN.value == '' || passwordIN.value == null) {
-        document.getElementById("passErr").textContent = "The password field is required.";
-        
-      }else if(passwordIN.value.length <6 ){
-        document.getElementById("passErr").textContent = "The password must be at least 6 characters.";
-        
-      }else if(passwordIN.value.length >18){
-        document.getElementById("passErr").textContent = "The password may not be greater than 18 characters.";
-        
-      }else{
-       
-        passValueIN=passwordIN.value;
-        document.getElementById("passErr").textContent = "";
-        passIN=true;
-      }
 
-     
+
 
       data = JSON.parse(localStorage.getItem("formData") || "[]");
 
@@ -171,6 +137,11 @@ togglePassword2.addEventListener("click", function () {
       }
 
 }
+
+
+
+
+
 
 
 

@@ -1,3 +1,5 @@
+document.getElementById("accountName").textContent = window.sessionStorage.getItem("nameValue");
+
 document.getElementById("list").onchange = function () {
     getinfo();
 
